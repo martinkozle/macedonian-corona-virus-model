@@ -59,7 +59,7 @@ def prepare_data(df, names, num_prior_days):
 
 def main():
     names = ['date', 'infected', 'cured', 'deaths']
-    df = read_csv('data_20200514.csv', names=names)
+    df = read_csv('data/data_20200514.csv', names=names)
     X, y, X_lately = prepare_data(df, names, 8)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
     print('Train data size: {}'.format(len(X_train)))

@@ -77,7 +77,7 @@ class Scrapper:
 
     def write_to_csv_file(self, *, destination=None):
         if not destination:
-            destination = 'data_{}.csv'.format(self.data[-1][0])  # get last date
+            destination = 'data/data_{}.csv'.format(self.data[-1][0])  # get last date
         self._logger.debug('Writing data to {}'.format(destination))
         with open(destination, 'w', newline='') as f:
             csv_writer = csv.writer(f)
