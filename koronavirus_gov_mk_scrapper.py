@@ -73,9 +73,11 @@ class Scrapper:
         dates = list(map(int, data_response[0]['stringColumn']['values']))
         total_infected, total_cured, total_deaths = (list(map(int, data_response[i]['doubleColumn']['values']))
                                                      for i in range(1, 4))
-        self.data = zip(dates, total_infected, total_cured, total_deaths)
+        self.data = list(zip(dates, total_infected, total_cured, total_deaths))
 
-    def write_to_csv_file(self, *, destination: str = 'data.csv'):
+    def write_to_csv_file(self, *, destination=None):
+        if not destination:
+            destination = 'data_{}.csv'.format(self.data[-1][0])  # get last date
         self._logger.debug('Writing data to {}'.format(destination))
         with open(destination, 'w', newline='') as f:
             csv_writer = csv.writer(f)
